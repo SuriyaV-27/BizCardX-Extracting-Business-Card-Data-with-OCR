@@ -5,7 +5,6 @@ import io
 import mysql.connector
 from mysql.connector import Error
 
-# Function to create MySQL connection
 def create_connection(db_config):
     conn = None
     try:
@@ -51,7 +50,6 @@ def update_entry(conn, entry_id, new_details):
     except Error as e:
         print(f"Error updating entry in database: {e}")
 
-# Example database configuration for MySQL
 db_config = {
     "host": "localhost",
     "user": "root",
@@ -59,7 +57,6 @@ db_config = {
     "database": "Image_Reader"
 }
 
-# Connect to MySQL database using the configured parameters
 conn = create_connection(db_config)
 
 st.title('Image Reader')
@@ -68,14 +65,14 @@ st.title('Image Reader')
 uploaded_file = st.file_uploader("Upload Image Card", type=['jpg', 'jpeg', 'png'])
 
 if uploaded_file is not None:
-    image_bytes = uploaded_file.read()  # Read image bytes directly
-    image = Image.open(io.BytesIO(image_bytes))  # Use PIL to open image for display
+    image_bytes = uploaded_file.read() 
+    image = Image.open(io.BytesIO(image_bytes))  
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
     # Perform OCR on the uploaded image
     st.subheader("Information Retrieved:")
     reader = easyocr.Reader(['en'])
-    extracted_info = reader.readtext(image_bytes)  # Pass image bytes directly
+    extracted_info = reader.readtext(image_bytes) 
 
     # Display extracted information
     for item in extracted_info:
