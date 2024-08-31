@@ -6,6 +6,7 @@ import mysql.connector
 from mysql.connector import Error
 
 #It is the code that i have explained in LIVE evaluation
+#Working Fine
 
 def create_connection(db_config):
     conn = None
